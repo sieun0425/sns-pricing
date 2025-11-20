@@ -6,13 +6,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
     :root {
-      --bg: #f5f5f7;
-      --panel: #ffffff;
-      --text-main: #111827;
-      --text-sub: #6b7280;
-      --accent: #e11d48;
-      --muted: #9ca3af;
-      --border: #e5e7eb;
+      --bg: #fdf2f8;          /* 살짝 핑크빛 화사한 배경 */
+      --panel: #ffffff;       /* 카드(섹션) 배경 */
+      --text-main: #111827;   /* 본문 텍스트 */
+      --text-sub: #6b7280;    /* 설명 텍스트 */
+      --accent: #e11d48;      /* 가격 포인트 색 */
+      --muted: #9ca3af;       /* 보조 텍스트 */
+      --border: #e5e7eb;      /* 테두리 */
     }
 
     * {
@@ -50,31 +50,18 @@
       color: var(--text-sub);
     }
 
-    .notice {
-      margin-top: 16px;
-      padding: 10px 14px;
-      border-radius: 10px;
-      background: #fef2f2;
-      color: #991b1b;
-      font-size: 13px;
-      border: 1px solid #fecaca;
-    }
-
-    .notice strong {
-      color: #b91c1c;
-      font-weight: 700;
-    }
-
+    /* 섹션 공통 */
     section {
-      margin-top: 32px;
+      margin-top: 24px;
       padding: 20px 18px 18px;
       border-radius: 18px;
       background: var(--panel);
       border: 1px solid var(--border);
+      box-shadow: 0 12px 25px rgba(15, 23, 42, 0.06);
     }
 
     section + section {
-      margin-top: 20px;
+      margin-top: 18px;
     }
 
     section h2 {
@@ -82,10 +69,27 @@
       margin-bottom: 4px;
     }
 
-    section .section-sub {
+    .section-sub {
       font-size: 13px;
       color: var(--text-sub);
-      margin-bottom: 12px;
+      margin-bottom: 10px;
+    }
+
+    /* 인스타 전용 안내 박스 */
+    .notice-inline {
+      margin: 8px 0 12px;
+      padding: 8px 10px;
+      border-radius: 8px;
+      background: #fef2f2;
+      color: #991b1b;
+      font-size: 12px;
+      border: 1px solid #fecaca;
+      text-align: center;
+    }
+
+    .notice-inline strong {
+      color: #b91c1c;
+      font-weight: 700;
     }
 
     .group-title {
@@ -102,15 +106,19 @@
       display: flex;
       flex-wrap: wrap;
       gap: 4px;
-    }
-
-    .item .label {
-      color: var(--muted);
-      margin-right: 4px;
+      align-items: baseline;
+      justify-content: space-between;
     }
 
     .item .name {
       flex: 1 1 auto;
+    }
+
+    .item .note {
+      font-size: 12px;
+      color: var(--muted);
+      margin-right: 4px;
+      white-space: nowrap;
     }
 
     .item .price {
@@ -119,16 +127,16 @@
       white-space: nowrap;
     }
 
-    .item .note {
-      font-size: 12px;
-      color: var(--muted);
-      margin-left: 6px;
-    }
-
     .divider {
       margin: 12px 0;
       height: 1px;
       background: linear-gradient(to right, transparent, #e5e7eb, transparent);
+    }
+
+    /* 인기 상품 강조 */
+    .note.popular {
+      color: #f97316;
+      font-weight: 600;
     }
 
     @media (max-width: 480px) {
@@ -146,16 +154,17 @@
     <header>
       <h1>SNS 서비스 단가표</h1>
       <p>원하시는 플랫폼·상품·수량에 맞게 선택해 주세요.</p>
-      <div class="notice">
-        팔로워·좋아요·댓글은 <strong>성별 / 연령 선택 가능</strong>하며,<br />
-        선택 시 인당 <strong>+200원</strong>이 추가됩니다.
-      </div>
     </header>
 
     <!-- Instagram -->
     <section>
-      <h2>인스타그램 서비스</h2>
+      <h2>:흰색_확인_표시: 인스타그램 서비스</h2>
       <p class="section-sub">실제 한국인 기반 팔로워 · 좋아요 · 댓글 · 노출 · 릴스</p>
+
+      <div class="notice-inline">
+        팔로워·좋아요·댓글은 <strong>성별 / 연령 선택 가능</strong>하며,<br />
+        선택 시 인당 <strong>+200원</strong>이 추가됩니다.
+      </div>
 
       <div class="group-title">팔로워</div>
       <p class="item">
@@ -172,13 +181,13 @@
       </p>
       <p class="item">
         <span class="name">한국인 팔로워 1,000명</span>
-        <span class="price">190,000원</span>
         <span class="note">5% 할인</span>
+        <span class="price">190,000원</span>
       </p>
       <p class="item">
         <span class="name">한국인 팔로워 2,000명</span>
-        <span class="price">360,000원</span>
         <span class="note">10% 할인</span>
+        <span class="price">360,000원</span>
       </p>
 
       <div class="divider"></div>
@@ -190,8 +199,8 @@
       </p>
       <p class="item">
         <span class="name">1달 무제한 좋아요 100개</span>
+        <span class="note popular">★ 인기 상품</span>
         <span class="price">250,000원</span>
-        <span class="note">인기 상품</span>
       </p>
       <p class="item">
         <span class="name">한국인 댓글 5개</span>
@@ -217,7 +226,7 @@
 
     <!-- YouTube -->
     <section>
-      <h2>유튜브 서비스</h2>
+      <h2>:흰색_확인_표시: 유튜브 서비스</h2>
       <p class="section-sub">구독자 · 조회수 · 시청시간 · 좋아요 · 댓글</p>
 
       <div class="group-title">구독자</div>
@@ -243,8 +252,8 @@
       <div class="group-title">시청시간</div>
       <p class="item">
         <span class="name">시청시간 1,000시간</span>
-        <span class="price">350,000원</span>
         <span class="note">1~3시간 길이의 영상만 가능</span>
+        <span class="price">350,000원</span>
       </p>
 
       <div class="divider"></div>
@@ -266,7 +275,7 @@
 
     <!-- TikTok -->
     <section>
-      <h2>틱톡 서비스</h2>
+      <h2>:흰색_확인_표시: 틱톡 서비스</h2>
       <p class="section-sub">조회수 · 팔로워 · 좋아요 · 공유 · 저장</p>
 
       <div class="group-title">조회수</div>
